@@ -32,7 +32,7 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 //sample output
-app.get("/",auth,(req, res) => {
+app.get("/",(req, res) => {
   res.status(200).json({ Message: "Server is working fine." });
 });
 
