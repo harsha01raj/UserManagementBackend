@@ -1,6 +1,6 @@
 const express = require("express");
 const UserModel = require("../model/userModel");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt=require("jsonwebtoken");
 const limiter = require("../middleware/rateLimiter");
 require("dotenv").config();
