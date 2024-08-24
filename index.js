@@ -8,11 +8,17 @@ const router = require("./routes/authRoutes.js");
 const auth = require("./middleware/authMiddleware.js");
 const TaskRouter = require("./routes/taskRoutes.js");
 const userRouter = require("./routes/userRoutes.js");
+const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-app.use(express.json())
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+app.use(express.json());
 app.use(
   morgan("combined", {
     stream: {
@@ -23,16 +29,16 @@ app.use(
   })
 );
 
-app.use("/auth",router)
+app.use("/auth", router);
 //err-handling middleware
-app.use("/user",auth,userRouter);
-app.use("/task",auth,TaskRouter)
+app.use("/user", auth, userRouter);
+app.use("/task", auth, TaskRouter);
 app.use((err, req, res, next) => {
   logger.error(err.stack);
   res.status(500).send("Something broke!");
 });
 //sample output
-app.get("/",(req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json({ Message: "Server is working fine." });
 });
 
