@@ -26,7 +26,7 @@ TaskRouter.post("/add-task", authorizeRole("member"), async (req, res) => {
   }
 });
 
-TaskRouter.get("/get-task", authorizeRole(["member","admin"]), async (req, res) => {
+TaskRouter.get("/get-task", authorizeRole("member"), async (req, res) => {
   try {
     const task = await TaskModel.find({ createdBy: req.user.user._id });
     if (!task) {
