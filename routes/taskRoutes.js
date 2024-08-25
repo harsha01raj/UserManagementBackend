@@ -79,10 +79,10 @@ TaskRouter.delete("/delete/:id", authorizeRole("member"), async (req, res) => {
   }
 });
 
-TaskRouter.get("/all-document",authorizeRole('manager'), async (req, res) => {
+TaskRouter.get("/all-document" , async (req, res) => {
   try {
     const tasks = await TaskModel.find();
-    res.json(tasks);
+    res.status(200).json({ Task: tasks });
   } catch (error) {
     res.status(400).json({ Message: error.message });
   }
