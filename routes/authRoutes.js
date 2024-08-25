@@ -36,7 +36,7 @@ router.post("/register",limiter,async (req, res) => {
   }
 });
 
-router.post("/login", limiter,async (req, res) => {
+router.post("/login",limiter,async (req, res) => {
     const {email,password}=req.body;
     try {
         const user=await UserModel.findOne({email});

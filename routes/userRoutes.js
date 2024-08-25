@@ -6,6 +6,17 @@ const authorizeRole = require("../middleware/authorizeRole");
 
 const userRouter = express.Router();
 
+userRouter.get("/all-user",authorizeRole('admin'),auth,async(req,res)=>{
+  try {
+    const user=await UserModel.find();
+    if(!user){
+      res.status(404).json({"Message":"User not found."})
+    }
+    res.status(200).json({"User":user})
+  } catch (error) {
+    res.status(400).json({"Message":error.message})
+  }
+})
 userRouter.get("/stats", authorizeRole('admin'), auth, async (req, res) => {
   try {
     const totalTasks = await TaskModel.countDocuments();
