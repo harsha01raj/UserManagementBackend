@@ -40,7 +40,7 @@ TaskRouter.get("/get-task", authorizeRole("member"), async (req, res) => {
   }
 });
 
-TaskRouter.put("/update/:id", authorizeRole("member"), async (req, res) => {
+TaskRouter.patch("/update/:id", authorizeRole("member"), async (req, res) => {
   try {
     const updatedtask = await TaskModel.findByIdAndUpdate(
       {
